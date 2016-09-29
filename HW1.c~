@@ -76,7 +76,14 @@ int main(){
   char c[20] = "hi ";
   printf("STRCAT TEST\n");
   printf("\tString c: %s \n",c);
-  strcpy(c,"Obama");
+  strcat(c,"Obama");
   printf("\t\tCat Obama into c...\n");
   printf("\tString c: %s \n\n",c);
+
+  char c2[20] = "hi ";
+  printf("MYSTRCAT TEST\n");
+  printf("\tString c2: %s \n",c2);
+  mystrcat(c2,"Trump");
+  printf("\t\tCat Trump into c2...\n");
+  printf("\tString c2: %s \n\n",c2);
 }
