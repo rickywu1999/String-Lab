@@ -34,10 +34,22 @@ char * mystrcat( char *dest, char *source ){
 
 int mystrcmp( char *s1, char *s2 ){
   int n = 0;
-  while(s1[n] && s2[n]);
+  for(;s1[n] == s2[n]; n++){
+    if (!(s1[n] && s2[n])){
+      return (s1[n] - s2[n]);
+    }
+  }
+  return s1[n] - s2[n];
 }
 
 char * mystrchr( char *s, char c ){
+  int n = 0;
+  int size = mystrlen(s);
+  for(;(s[n] != c)&&(n<size);n++);
+  if (n == size){
+    return NULL;
+  }
+  return &s[n];
 }
 
 int main(){
@@ -98,7 +110,7 @@ int main(){
   printf("\tString f: %s \n",f);
   int ans = strcmp(d,e);
   printf("\t\tComparing d and e...\n");
-  printf("\tReturns: %d \n\n",ans);
+  printf("\tReturns: %d \n",ans);
   int ans2 = strcmp(d,f);
   printf("\t\tComparing d and f...\n");
   printf("\tReturns: %d \n\n",ans2);
@@ -106,14 +118,35 @@ int main(){
   char d2[20] = "hello world";
   char e2[20] = "hello world";
   char f2[20] = "hello stars";
-  printf("STRCMP TEST\n");
+  printf("MYSTRCMP TEST\n");
   printf("\tString d2: %s \n",d2);
   printf("\tString e2: %s \n",e2);
   printf("\tString f2: %s \n",f2);
   int ans3 = mystrcmp(d2,e2);
   printf("\t\tComparing d2 and e2...\n");
-  printf("\tReturns: %d \n\n",ans3);
+  printf("\tReturns: %d \n",ans3);
   int ans4 = mystrcmp(d2,f2);
   printf("\t\tComparing d2 and f2...\n");
   printf("\tReturns: %d \n\n",ans4);
+
+  char g[20] = "abcdefghij";
+  printf("STRCHR TEST\n");
+  printf("\tString g: %s \n",g);
+  char* res = strchr(g,'e');
+  printf("\t\tSearching for \"e\" in g...\n");
+  printf("\tReturn: %p \n",res);
+  char* res2 = strchr(g,'z');
+  printf("\t\tSearching for \"z\" in g...\n");
+  printf("\tReturn: %p \n\n",res2);
+
+  char g2[20] = "abcdefghij";
+  printf("MYSTRCHR TEST\n");
+  printf("\tString g2: %s \n",g2);
+  char* res3 = mystrchr(g2,'e');
+  printf("\t\tSearching for \"e\" in g2...\n");
+  printf("\tReturn: %p \n",res3);
+  char* res4 = mystrchr(g2,'z');
+  printf("\t\tSearching for \"z\" in g2...\n");
+  printf("\tReturn: %p \n\n",res4);
+  return 0;
 }
